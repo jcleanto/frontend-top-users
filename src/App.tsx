@@ -1,10 +1,13 @@
-import ListUserPage from './pages/users/list.user.page'
+import { useRoutes } from 'react-router-dom';
+import routes from './router';
 import './App.css'
 
 function App() {
+  const content = useRoutes(routes);
+
   return (
     <>
-      <ListUserPage />
+      {content}
     </>
   )
 }
