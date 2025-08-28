@@ -3,7 +3,7 @@ import type { IGenericResponse, IUserResponse, IUsersResponse } from './types';
 import type { EditUserInput } from '../pages/users/edit.user.page';
 import type { RegisterInput } from '../pages/users/create.user.page';
 
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:10000/';
 
 export const userApi = axios.create({
   baseURL: BASE_URL,
@@ -29,5 +29,10 @@ export const updateUserFn = async (user: EditUserInput) => {
 
 export const signUpUserFn = async (user: RegisterInput) => {
   const response = await userApi.post<IGenericResponse>('users/new', user);
+  return response.data;
+};
+
+export const deleteUserFn = async (id: string | undefined) => {
+  const response = await userApi.delete<IGenericResponse>(`users/${id}`);
   return response.data;
 };
