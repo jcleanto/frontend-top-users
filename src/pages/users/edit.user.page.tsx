@@ -7,10 +7,9 @@ import { toast } from 'react-toastify';
 import * as z from 'zod';
 import { Box, Breadcrumbs, Button, MenuItem, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import BusinessIcon from '@mui/icons-material/Business';
+import PersonIcon from '@mui/icons-material/Person';
 import { getUserByIdFn, updateUserFn } from '../../api/userApi';
 import { RoleType, StatusEnum } from '../../api/types';
-import { useStateContext } from '../../context';
 import FormInput from '../../components/FormInput';
 import FormSwitch from '../../components/FormSwitch';
 import FormSelect from '../../components/FormSelect';
@@ -34,7 +33,7 @@ const editUserSchema = z.object({
   cidade: z.string().nullable(),
   estado: z.string().nullable(),
   cep: z.string().nullable(),
-  active: z.coerce.boolean(),
+  active: z.boolean(),
   role: z.optional(z.enum(RoleType)),
   password: z.string()
     .min(8, 'A Senha deve ter 8 ou mais caracteres')
@@ -50,7 +49,6 @@ const editUserSchema = z.object({
 export type EditUserInput = z.infer<typeof editUserSchema>;
 
 const EditUserPage = () => {
-  const stateContext = useStateContext();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -58,8 +56,6 @@ const EditUserPage = () => {
     queryKey: ['getUserById', id], 
     queryFn: () => getUserByIdFn(id),
   });
-
-  // const user = stateContext.state.authUser;
 
   const methods = useForm<EditUserInput>({
     resolver: zodResolver(editUserSchema),
@@ -103,7 +99,7 @@ const EditUserPage = () => {
 
   useEffect(() => {
     if (!isLoadingUser && !error && data) {
-      setValue('id', data.data.id);
+      setValue('id', data.data.id ? data.data.id : 0);
       setValue('nome', data.data.nome);
       setValue('email', data.data.email);
       setValue('rua', data.data.rua);
@@ -133,7 +129,7 @@ const EditUserPage = () => {
     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' sx={{ mb: 1 }}>
         <LinkItem key='1' to={'/users'} color='inherit' sx={{ display: 'flex', alignItems: 'center' }}>
-          <BusinessIcon sx={{ mr: 0.5 }} fontSize='inherit' />Usuários
+          <PersonIcon sx={{ mr: 0.5 }} fontSize='inherit' />Usuários
         </LinkItem>
         <Typography key='2' color='text.primary'>
           Editar

@@ -74,7 +74,7 @@ export default function ListUserPage() {
       { field: 'email', headerName: 'Email', type: 'string', flex: 1, minWidth: 250 },
       { field: 'createdAt', headerName: 'Criado em', type: 'dateTime', width: 180, valueGetter: (value) => value && new Date(value) },
       { field: 'updatedAt', headerName: 'Atualizado em', type: 'dateTime', width: 180, valueGetter: (value) => value && new Date(value) },
-      { field: 'status', headerName: 'Ativo', type: 'boolean', width: 120 },
+      { field: 'status', headerName: 'Ativo', type: 'boolean', width: 120, valueGetter: (value) => value === 'ativo' },
       {
         field: 'actions',
         type: 'actions',

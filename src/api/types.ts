@@ -11,7 +11,7 @@ export enum RoleType {
 }
 
 export interface IUser {
-  id: number;
+  id?: number | undefined;
   nome: string;
   email: string;
   rua: string | null;
@@ -27,9 +27,9 @@ export interface IUser {
   status?: string | undefined;
   role?: RoleType | undefined;
   isDeleted?: boolean | undefined;
-  createdAt: string | null;
-  updatedAt: string | null;
-  deletedAt: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  deletedAt?: string | null;
 }
 
 export interface IUserResponse {
@@ -39,10 +39,8 @@ export interface IUserResponse {
 
 export interface IUsersResponse {
   status: string;
-  data: {
-    users: IUser[];
-    count: number;
-  };
+  data: IUser[];
+  count: number;
 }
 
 export interface IGenericResponse {

@@ -7,10 +7,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Box, Breadcrumbs, Button, MenuItem, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import BusinessIcon from '@mui/icons-material/Business';
+import PersonIcon from '@mui/icons-material/Person';
 import { signUpUserFn } from '../../api/userApi';
-import { RoleType, StatusEnum } from '../../api/types';
-import { useStateContext } from '../../context';
+import { RoleType, StatusEnum, type IUser } from '../../api/types';
 import FormInput from '../../components/FormInput';
 import FormSelect from '../../components/FormSelect';
 import FormSwitch from '../../components/FormSwitch';
@@ -33,7 +32,7 @@ const registerSchema = z.object({
   cidade: z.string().nullable(),
   estado: z.string().nullable(),
   cep: z.string().nullable(),
-  active: z.coerce.boolean(),
+  active: z.boolean(),
   password: z.string().min(1, 'A Senha é obrigatória')
     .min(8, 'A Senha tem que ter pelo menos 8 caracteres')
     .max(32, 'A Senha tem que ter no máximo 32 caracteres'),
@@ -42,15 +41,12 @@ const registerSchema = z.object({
 }).refine((data) => data.password === data.passwordConfirm, {
   path: ['passwordConfirm'],
   message: 'A Senha e sua confirmação não são iguais',
-});
+}) satisfies z.ZodType<IUser>;
 
 export type RegisterInput = z.infer<typeof registerSchema>;
 
 const CreateUserPage = () => {
-  const stateContext = useStateContext();
   const navigate = useNavigate();
-
-  const user = stateContext.state.authUser;
 
   const methods = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
@@ -106,7 +102,7 @@ const CreateUserPage = () => {
     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' sx={{ mb: 1 }}>
         <LinkItem key='1' to={'/users'} color='inherit' sx={{ display: 'flex', alignItems: 'center' }}>
-          <BusinessIcon sx={{ mr: 0.5 }} fontSize='inherit' />Usuários
+          <PersonIcon sx={{ mr: 0.5 }} fontSize='inherit' />Usuários
         </LinkItem>
         <Typography key='2' color='text.primary'>
           Criar Novo Usuário
