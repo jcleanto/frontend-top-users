@@ -3,29 +3,38 @@ export enum StatusEnum {
   INATIVO = 'inativo'
 }
 
+export enum RoleType {
+  USER = 'user',
+  ADMIN = 'admin',
+  CUSTOMER = 'customer',
+  SYSTEM = 'system',
+}
+
 export interface IUser {
   id: number;
   nome: string;
   email: string;
-  rua: string;
-  numero: string;
-  bairro: string;
-  complemento: string;
-  cidade: string;
-  estado: string;
-  cep: string;
-  status: StatusEnum;
-  isDeleted: boolean;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
+  rua: string | null;
+  numero: string | null;
+  complemento: string | null;
+  bairro: string | null;
+  cidade: string | null;
+  estado: string | null;
+  cep: string | null;
+  password: string;
+  passwordConfirm: string;
+  active?: boolean | undefined;
+  status?: string | undefined;
+  role?: RoleType | undefined;
+  isDeleted?: boolean | undefined;
+  createdAt: string | null;
+  updatedAt: string | null;
+  deletedAt: string | null;
 }
 
 export interface IUserResponse {
   status: string;
-  data: {
-    user: IUser;
-  };
+  data: IUser;
 }
 
 export interface IUsersResponse {

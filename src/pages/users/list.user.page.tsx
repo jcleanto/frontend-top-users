@@ -5,24 +5,20 @@ import {
   type GridColDef,
   type GridSlots,
 } from '@mui/x-data-grid';
+import { Box, Breadcrumbs, Button, Paper, Typography } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import EditIcon from '@mui/icons-material/Edit';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useQuery } from '@tanstack/react-query';
 import { getUsersFn } from '../../api/userApi';
 import { type IUser } from '../../api/types';
-import Paper from '@mui/material/Paper';
-import LoadingButton from '@mui/lab/LoadingButton';
-// import { useNavigate } from 'react-router-dom';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 type Row = (IUser[])[number];
 
 export default function ListUserPage() {
   const [rows, setRows] = React.useState<Row[]>([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['allUsers'], 
@@ -66,13 +62,12 @@ export default function ListUserPage() {
           <GridActionsCellItem
             icon={<EditIcon />}
             label="Edit"
-            // onClick={() => navigate(`/user/${params.id}`)}
+            onClick={() => navigate(`/user/${params.id}`)}
           />,
         ],
       },
     ],
-    // [navigate],
-    [],
+    [navigate],
   );
 
   React.useEffect(() => {
@@ -100,14 +95,14 @@ export default function ListUserPage() {
         />
       </Paper>
       <Box sx={{ display: 'flex', justifyContent: 'end'  }}>
-        <LoadingButton
+        <Button
           loading={isLoading}
           variant='contained'
           sx={{ mt: 1, mr: 2 }}
-          // onClick={() => navigate('/user')}
+          onClick={() => navigate('/user')}
         >
           Criar Novo Usuário
-        </LoadingButton>
+        </Button>
       </Box>
     </>
   );

@@ -11,8 +11,8 @@ const Loadable =
     );
 
 const ListUserPage = Loadable(lazy(() => import('../pages/users/list.user.page')));
-// const CreateUserPage = Loadable(lazy(() => import('../pages/users/create.user.page')));
-// const EditUserPage = Loadable(lazy(() => import('../pages/users/edit.user.page')));
+const CreateUserPage = Loadable(lazy(() => import('../pages/users/create.user.page')));
+const EditUserPage = Loadable(lazy(() => import('../pages/users/edit.user.page')));
 
 const normalRoutes: RouteObject = {
   path: '*',
@@ -26,7 +26,6 @@ const normalRoutes: RouteObject = {
         },
       ],
     },
-    /*
     {
       path: 'user',
       children: [
@@ -40,7 +39,6 @@ const normalRoutes: RouteObject = {
         },
       ],
     },
-    */
   ],
 };
 

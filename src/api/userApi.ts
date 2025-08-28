@@ -1,5 +1,7 @@
 import axios from 'axios';
 import type { IGenericResponse, IUserResponse, IUsersResponse } from './types';
+import type { EditUserInput } from '../pages/users/edit.user.page';
+import type { RegisterInput } from '../pages/users/create.user.page';
 
 const BASE_URL = 'http://localhost:3000/';
 
@@ -20,14 +22,12 @@ export const getUserByIdFn = async (id: string | undefined) => {
   return response.data;
 };
 
-/*
 export const updateUserFn = async (user: EditUserInput) => {
-  const response = await userApi.post<IGenericResponse>(`auth/user/${user.id}`, user);
+  const response = await userApi.patch<IGenericResponse>(`users/${user.id}/update`, user);
   return response.data;
 };
 
 export const signUpUserFn = async (user: RegisterInput) => {
-  const response = await userApi.post<IGenericResponse>('auth/register', user);
+  const response = await userApi.post<IGenericResponse>('users/new', user);
   return response.data;
 };
-*/
