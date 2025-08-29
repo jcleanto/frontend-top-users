@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { IGenericResponse, IUserResponse, IUsersResponse } from './types';
-import type { EditUserInput } from '../pages/users/edit.user.page';
-import type { RegisterInput } from '../pages/users/create.user.page';
+import type { EditUserInput } from '../crud/edit.user.page';
+import type { RegisterInput } from '../crud/create.user.page';
 
 const BASE_URL = 'http://localhost:10000/';
 

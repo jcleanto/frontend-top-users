@@ -12,8 +12,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { deleteUserFn, getUsersFn } from '../../api/userApi';
-import { type IUser } from '../../api/types';
+import { deleteUserFn, getUsersFn } from '../api/userApi';
+import { type IUser } from '../api/types';
 import { useNavigate } from 'react-router-dom';
 import ConfirmDialog from '../../components/ConfirmDialog';
 

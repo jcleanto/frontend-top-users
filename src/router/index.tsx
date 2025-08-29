@@ -10,9 +10,9 @@ const Loadable =
       </Suspense>
     );
 
-const ListUserPage = Loadable(lazy(() => import('../pages/users/list.user.page')));
-const CreateUserPage = Loadable(lazy(() => import('../pages/users/create.user.page')));
-const EditUserPage = Loadable(lazy(() => import('../pages/users/edit.user.page')));
+const ListUserPage = Loadable(lazy(() => import('../user/crud/list.user.page')));
+const CreateUserPage = Loadable(lazy(() => import('../user/crud/create.user.page')));
+const EditUserPage = Loadable(lazy(() => import('../user/crud/edit.user.page')));
 
 const normalRoutes: RouteObject = {
   path: '*',
