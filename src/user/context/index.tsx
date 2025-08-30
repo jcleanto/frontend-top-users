@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IUser } from '../user/api/types';
+import type { IUser } from '../api/types';
 
 type State = {
   authUser: IUser | null;

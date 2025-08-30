@@ -10,9 +10,11 @@ export default defineConfig({
       name: 'frontend_top_users',
       filename: 'remoteEntry.js',
       exposes: {
-        './ListUserPage': './src/pages/users/list.user.page.tsx',
+        './ListUserPage': './src/user/crud/list.user.page.tsx',
+        './CreateUserPage': './src/user/crud/create.user.page.tsx',
+        './EditUserPage': './src/user/crud/edit.user.page.tsx',
       },
-      shared: ['react', 'react-dom']
+      shared: ['react', 'react-dom', 'react-router-dom', '@tanstack/react-query', '@mui/x-data-grid']
     })
   ],
   build: {
