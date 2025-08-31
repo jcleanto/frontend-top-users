@@ -21,8 +21,8 @@ export interface IUser {
   cidade: string | null;
   estado: string | null;
   cep: string | null;
-  password: string;
-  passwordConfirm: string;
+  senha: string;
+  senhaConfirm: string;
   active?: boolean | undefined;
   status?: string | undefined;
   role?: RoleType | undefined;

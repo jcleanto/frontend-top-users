@@ -125,7 +125,7 @@ export default function ListUserPage() {
         <Button
           loading={isLoading}
           variant='contained'
-          sx={{ mt: 1, mr: 2 }}
+          sx={{ mt: 1 }}
           onClick={() => navigate('/user')}
         >
           Criar Novo Usuário

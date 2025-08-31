@@ -33,13 +33,13 @@ const registerSchema = z.object({
   estado: z.string().nullable(),
   cep: z.string().nullable(),
   active: z.boolean(),
-  password: z.string().min(1, 'A Senha é obrigatória')
+  senha: z.string().min(1, 'A Senha é obrigatória')
     .min(8, 'A Senha tem que ter pelo menos 8 caracteres')
     .max(32, 'A Senha tem que ter no máximo 32 caracteres'),
-  passwordConfirm: z.string().min(1, 'Por favor, confirme sua senha'),
+  senhaConfirm: z.string().min(1, 'Por favor, confirme sua senha'),
   role: z.optional(z.enum(RoleType)),
-}).refine((data) => data.password === data.passwordConfirm, {
-  path: ['passwordConfirm'],
+}).refine((data) => data.senha === data.senhaConfirm, {
+  path: ['senhaConfirm'],
   message: 'A Senha e sua confirmação não são iguais',
 }) satisfies z.ZodType<IUser>;
 
@@ -92,9 +92,7 @@ const CreateUserPage = () => {
         ...values,
         status: values.active ? StatusEnum.ATIVO : StatusEnum.INATIVO,
         active: undefined,
-        password: undefined,
-        passwordConfirm: undefined,
-        role: undefined,
+        senhaConfirm: undefined,
       });
   };
 
@@ -130,17 +128,17 @@ const CreateUserPage = () => {
           <FormInput name='cidade' label='Cidade' />
           <FormInput name='estado' label='Estado' />
           <FormInput name='cep' label='CEP' />
-          <FormInput name='password' label='Senha' type='password' />
+          <FormInput name='senha' label='Senha' type='password' />
           <FormInput
-            name='passwordConfirm'
+            name='senhaConfirm'
             label='Confirmação de Senha'
             type='password'
           />
           <FormSelect name='role' label='Perfil do Usuário'>
-            <MenuItem value={RoleType.CUSTOMER}>{RoleType.CUSTOMER}</MenuItem>
+            <MenuItem value={RoleType.ADMIN}>{RoleType.ADMIN}</MenuItem>
             <MenuItem value={RoleType.USER}>{RoleType.USER}</MenuItem>
           </FormSelect>
-          <Box sx={{ ml: 1, mb: 1, mt: 1 }}>
+          <Box sx={{ ml: 1, mb: 1, mt: 1, display: 'flex', justifyContent: 'flex-start' }}>
             <FormSwitch name='active' label='Ativo' />
           </Box>
 

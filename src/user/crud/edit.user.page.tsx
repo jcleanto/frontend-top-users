@@ -35,13 +35,13 @@ const editUserSchema = z.object({
   cep: z.string().nullable(),
   active: z.boolean(),
   role: z.optional(z.enum(RoleType)),
-  password: z.string()
+  senha: z.string()
     .min(8, 'A Senha deve ter 8 ou mais caracteres')
     .max(32, 'A Senha deve ter menos de 32 caracteres')
     .optional()
     .or(z.literal('')),
-  passwordConfirm: z.string().min(1, 'Por favor, confirme sua Senha').optional().or(z.literal('')),
-}).refine((data) => data.password === data.passwordConfirm, {
+  senhaConfirm: z.string().min(1, 'Por favor, confirme sua Senha').optional().or(z.literal('')),
+}).refine((data) => data.senha === data.senhaConfirm, {
   path: ['passwordConfirm'],
   message: 'As Senhas devem ser iguais',
 });
@@ -119,9 +119,7 @@ const EditUserPage = () => {
         ...values,
         status: values.active ? StatusEnum.ATIVO : StatusEnum.INATIVO,
         active: undefined,
-        password: undefined,
-        passwordConfirm: undefined,
-        role: undefined,
+        senhaConfirm: undefined,
       });
   };
 
@@ -157,17 +155,17 @@ const EditUserPage = () => {
           <FormInput name='cidade' label='Cidade' />
           <FormInput name='estado' label='Estado' />
           <FormInput name='cep' label='CEP' />
-          <FormInput name='password' label='Senha' type='password' />
+          <FormInput name='senha' label='Senha' type='password' />
           <FormInput
-            name='passwordConfirm'
+            name='senhaConfirm'
             label='Confirmação de Senha'
             type='password'
           />
           <FormSelect name='role' label='Perfil do Usuário'>
-            <MenuItem value={RoleType.CUSTOMER}>{RoleType.CUSTOMER}</MenuItem>
-            <MenuItem value={RoleType.USER}>{RoleType.USER}</MenuItem>
+            <MenuItem sx={{ display: 'flex', justifyContent: 'flex-start' }} value={RoleType.ADMIN}>{RoleType.ADMIN}</MenuItem>
+            <MenuItem sx={{ display: 'flex', justifyContent: 'flex-start' }} value={RoleType.USER}>{RoleType.USER}</MenuItem>
           </FormSelect>
-          <Box sx={{ ml: 1, mb: 1, mt: 1 }}>
+          <Box sx={{ ml: 1, mb: 1, mt: 1, display: 'flex', justifyContent: 'flex-start' }}>
             <FormSwitch name='active' label='Ativo' />
           </Box>
 
