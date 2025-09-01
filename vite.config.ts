@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { federation } from '@module-federation/vite'
+import federation from '@originjs/vite-plugin-federation'
 // import { dependencies } from './package.json';
 
 // https://vite.dev/config/
@@ -49,7 +49,7 @@ export default defineConfig({
   },
   build: {
     modulePreload: false,
-    target: 'chrome89',
+    target: 'esnext',
     minify: false,
     cssCodeSplit: false,
   },
