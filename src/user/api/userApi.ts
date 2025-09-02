@@ -3,7 +3,7 @@ import type { IGenericResponse, IUserResponse, IUsersResponse } from './types';
 import type { EditUserInput } from '../crud/edit.user.page';
 import type { RegisterInput } from '../crud/create.user.page';
 
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:10000/';
 
 export const userApi = axios.create({
   baseURL: BASE_URL,
